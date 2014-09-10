@@ -11,12 +11,12 @@ mysql_query("SET NAMES UTF8;"); //设置编码
 $db_xiao_count=mt_rand(1,137);
 //$sql = "SELECT * FROM `xiaohua` WHERE `id` = 2
 
-$result = mysql_query("SELECT * FROM `xiaohua` WHERE `id`=$db_xiao_count");
+$result=mysql_query("SELECT * FROM `xiaohua` WHERE `id`=$db_xiao_count");
 
 $row = mysql_fetch_array($result);
   {
-  echo $row['title'] . $row['content'];
-  echo "<br />";
+   $xiaohua_rs = $row['title'] . $row['content'];
+ // echo "<br />";
   }
 
 mysql_close($con);

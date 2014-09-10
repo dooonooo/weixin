@@ -173,12 +173,3 @@ class wechatCallbackapiTest
  
 } 
 ?>
-
-	
-	
-	
-	
-	
-}
-
-?>
