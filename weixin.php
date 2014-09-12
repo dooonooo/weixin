@@ -111,14 +111,16 @@ class wechatCallbackapiTest
 						"HQMusicUrl"=>"http://121.199.4.61/music/zxmzf.mp3");
 						$result = $this->transmitMusic($object,$content);
 		}
+		else if($keyword == "笑话"){
+		require_once('xiaohua.php');
+		$content = $xiaohua_rs;
+		$result = $this->transmitXiaohua($object, $content); 
+		}
 		else{
 		$content = "额，好像在哪见过，让我想想\n/爱心功能还在开发之中...\n要不就要等人肉回复/调皮";
 		$result = $this->transmitText($object, $content); 
 		
 		}
-		
-		
-		
 		return $result; }
 		
 		
@@ -151,8 +153,9 @@ class wechatCallbackapiTest
 		<Articles> $item_str</Articles> 
 		</xml>"; 
 		$result = sprintf($newsTpl, $object->FromUserName, $object-> ToUserName, time(), count($arr_item)); return $result; 
-		} 
-
+		}
+		
+		//回复音乐信息
 		private function transmitMusic($object, $musicArray) { 
 		$itemTpl = "<Music> 
 		<Title><![CDATA[%s]]></Title> 
@@ -169,7 +172,16 @@ class wechatCallbackapiTest
 		$item_str </xml>"; 
 		$result = sprintf($textTpl, $object->FromUserName, $object-> ToUserName, time()); 
 		return $result; }
- 
+		
+		
+ 		/* 回复笑话消息 */ 
+		private function transmitXiaohua($object, $content) {
+		$textTpl = "<xml> 
+		<ToUserName><![CDATA[%s]]></ToUserName> <FromUserName><![CDATA[%s]]></FromUserName> 
+		<CreateTime>%s</CreateTime> <MsgType><![CDATA[text]]></MsgType> 
+		<Content><![CDATA[%s]]></Content> </xml>"; 
+		$result = sprintf($textTpl, $object->FromUserName, $object-> ToUserName, time(), $content); return $result; 
+		}
  
 } 
 ?>
