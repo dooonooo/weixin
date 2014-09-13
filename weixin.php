@@ -123,6 +123,20 @@ class wechatCallbackapiTest
 		}
 		return $result; }
 		
+		/*接收位置信息*/
+		private function receiveLocation($object){
+		$weixinid=trim($object->FromUserName);
+		$LocationX=trim($object->Location_X);
+		$LocationY=trim($object->Location_Y);
+		include("UserLocation.php");
+		$content = updateOrInsert($weixinid, $LocationX, $LocationY);
+		//$content=$weixinid."\n".$LocationX."\n".$LocationY;
+		$result = $this->transmitText($object, $content);
+		return $result;
+		}
+		
+		
+
 		
 		/* 回复文本消息 */ 
 		private function transmitText($object, $content) {
