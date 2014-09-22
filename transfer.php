@@ -29,7 +29,7 @@ print_r($data2);
 
 
 $result = mysql_query("select lat,lng,id from $db"); //执行SQL查询指令
-
+echo gettype($result);
 /* 
 echo "<table border=1><tr>";
 while($field = mysql_fetch_field($result)){//使用while输出表头

@@ -128,7 +128,10 @@ class wechatCallbackapiTest
 		$weixinid=trim($object->FromUserName);
 		$LocationX=trim($object->Location_X);
 		$LocationY=trim($object->Location_Y);
-		include("UserLocation.php");
+		//include("UserLocation.php");
+		include("nearbyPoint.php");
+		
+		
 		$content = updateOrInsert($weixinid, $LocationX, $LocationY);
 		//$content=$weixinid."\n".$LocationX."\n".$LocationY;
 		$result = $this->transmitText($object, $content);
